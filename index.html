@@ -1,173 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Developer Portfolio | Neo-Brutalism</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 
-<title>Warun Tej Rangu</title>
+    <style>
+        :root {
+            --bg-dark: #0D0D0D;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00d2ff;
+            --neon-purple: #9d50bb;
+            --neon-cyan: #00fff2;
+            --text-main: #e0e0e0;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-<!-- Bootstrap + Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        /* Global Reset & Base */
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-<style>
-body {
-  background: #f8f9fa;
+        h1, h2, h3, .nav-link {
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Background Animated Gradient */
+        .bg-gradient-animate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0d0d0d 100%);
+        }
+
+        .bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--neon-blue), var(--neon-purple));
+            border-radius: 10px;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        /* Neo-Brutalism Enhancements */
+        .neo-brutal {
+            border: 2px solid #fff;
+            box-shadow: 8px 8px 0px #fff;
+            transition: var(--transition-smooth);
+        }
+        .neo-brutal:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px var(--neon-cyan);
+            border-color: var(--neon-cyan);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(13, 13, 13, 0.8) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.2rem 0;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #fff !important;
+            margin: 0 15px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--neon-cyan);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            background: linear-gradient(to right, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .neon-text {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 242, 0.5);
+        }
+
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Progress Bars */
+        .progress {
+            height: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: visible;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 15px var(--neon-blue);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* Project Cards */
+        .project-card {
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+        }
+
+        .project-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover .project-overlay { opacity: 1; }
+        .project-card:hover .project-img { transform: scale(1.1); }
+
+        /* Timeline */
+        .timeline-item {
+            border-left: 2px solid var(--glass-border);
+            padding-left: 30px;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        /* Contact Form */
+        .form-control {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 242, 0.2);
+            color: #fff;
+        }
+
+        /* Buttons */
+        /* --- FIXED BUTTON HOVER --- */
+.btn-neon {
+    padding: 12px 30px;
+    border: 2px solid var(--neon-cyan) !important; /* Force border visibility */
+    color: var(--neon-cyan); /* Force text color to cyan initially */
+    background: transparent;
+    font-weight: 800; /* Made it bolder for better readability */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-/* Hero Section */
-.hero {
-  padding: 80px 0;
+.btn-neon:hover {
+    background: var(--neon-cyan) !important; /* Background fills with cyan */
+    color: #0000 !important; /* THIS FORCES TEXT TO BLACK */
+    box-shadow: 0 0 30px var(--neon-cyan);
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
-/* Cards */
-.card {
-  border-radius: 15px;
-  transition: 0.3s;
-}
-.card:hover {
-  transform: translateY(-5px);
+        /* Scroll Progress */
+        #scrollIndicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--neon-cyan);
+            z-index: 1051;
+            width: 0%;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+
+#contact label {
+    color: var(--neon-cyan) !important;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    opacity: 1; 
 }
 
-/* Profile Image */
-.profile-img {
-  width: 140px;
-  border-radius: 50%;
+#contact .form-control {
+    background: rgba(255, 255, 255, 0.05) !important; 
+    border: 1px solid var(--glass-border);
+    color: #ffffff !important; 
+    font-size: 1rem;
 }
 
-/* Buttons */
-.btn-custom {
-  border-radius: 25px;
+#contact .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important; 
 }
-</style>
 
+#contact .form-control:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--neon-cyan) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 242, 0.4) !important;
+    color: #ffffff !important;
+}
+
+#contact .btn-neon {
+    margin-top: 10px;
+    color: var(--neon-cyan) !important;
+    border: 2px solid var(--neon-cyan) !important;
+}
+
+#contact .btn-neon {
+    background-color: transparent !important;
+    color: var(--neon-cyan) !important;
+    border: 2px solid var(--neon-cyan) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+#contact .btn-neon:hover {
+    background-color: var(--neon-cyan) !important; 
+    color: #000000 !important;             
+    box-shadow: 0 0 20px var(--neon-cyan) !important;
+    transform: translateY(-3px);
+}
+    </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-<div class="container">
-<a class="navbar-brand fw-bold">Warun Tej Rangu</a>
+    <div id="scrollIndicator"></div>
+    <div class="bg-gradient-animate"><div class="bg-blob"></div></div>
 
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-<span class="navbar-toggler-icon"></span>
-</button>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">WARUN TEJ RANGU</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">History</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<div class="collapse navbar-collapse" id="nav">
-<ul class="navbar-nav ms-auto">
-<ul class="navbar-nav ms-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="index.html">Home</a>
-  </li>
+    <header id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h5 class="text-uppercase tracking-widest mb-4 neon-text" style="letter-spacing: 5px;">I am a Student</h5>
+                    <h1 class="hero-title mb-4"> <span class="typing-effect text-white" id="typewriter"></span></h1>
+                    <p class="lead mb-5 text-secondary col-md-9">I build high-performance web applications with a focus on futuristic aesthetics and seamless user experiences.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#projects" class="btn btn-neon">View Work</a>
+                        <a href="#contact" class="btn btn-outline-light px-4 py-2" style="border-radius: 0;">Contact Me</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="glass-card p-2 neo-brutal">
+                        <img src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=" alt="Profile" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <li class="nav-item">
-    <a class="nav-link" href="about.html">About</a>
-  </li>
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-md-6 reveal">
+                    <div class="position-relative">
+                        <div class="glass-card p-5">
+                            <h2 class="display-5 fw-bold mb-4">About <span class="neon-text">Me</span></h2>
+                            <p class="text-secondary">I am a curious and passionate Computer Science student who enjoys building modern and responsive web applications. I like exploring new technologies, improving my problem-solving skills, and turning ideas into real-world projects. I focus on writing clean code and creating user-friendly designs while continuously learning and growing in the field of development.</p>
+                            <div class="row mt-4">
+                                <div class="col-6 mb-3">
+                                    
+                                    <small class="text-muted">Projects Done</small>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    
+                                    <small class="text-muted">Happy Clients</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 reveal">
+                    <div class="ps-md-5">
+                        <h3 class="mb-4">OBJECTIVE</h3>
+                        <p class="text-secondary">To secure an opportunity where I can apply my technical knowledge, gain real-world experience, and enhance my development skills while contributing to innovative projects. My goal is to grow into a professional full-stack developer and build impactful digital solutions.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill neon-text me-3"></i> Designing with User Experience in Mind</li>
+                            <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill neon-text me-3"></i> Learning to Build Scalable Solutions</li>
+                            <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill neon-text me-3"></i> Writing Clean, Efficient & Readable Code</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <li class="nav-item">
-    <a class="nav-link" href="qualifications.html">Qualifications</a>
-  </li>
+    <section id="skills" class="py-5 bg-black">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Technical <span class="neon-text">Arsenal</span></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 reveal">
+                    <div class="glass-card p-4">
+                        <h5 class="mb-4">Frontend Mastery</h5>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>C</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 85%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>java</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 75%"></div></div>
+                        </div>
+                        <div class="mb-0">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Python</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 reveal">
+                    <div class="glass-card p-4">
+                        <h5 class="mb-4">Backend & Cloud</h5>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>HTML</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 85%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>CSS</span>
+                                <span>83%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 83%"></div></div>
+                        </div>
+                        <div class="mb-0">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Bootstrap</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress"><div class="progress-bar" style="width: 80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <li class="nav-item">
-    <a class="nav-link" href="skills.html">Skills</a>
-  </li>
+    <section id="projects" class="py-5">
+        <div class="container py-5">
+            <div class="d-flex justify-content-between align-items-end mb-5">
+                <h2 class="display-4 fw-bold mb-0">Featured <br><span class="neon-text">Creations</span></h2>
+                <p class="text-secondary d-none d-md-block">Hover to explore details</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="glass-card project-card neo-brutal">
+                        <img src="https://user-images.githubusercontent.com/110565344/221412365-74a20f45-5d8d-4b5d-8549-1f9c6c14405a.png" alt="Project 1" class="project-img">
+                        <div class="project-overlay">
+                            <span class="badge bg-info mb-2 text-dark">RESERVATION SYSTEM USING C</span>
+                            <h4>Bus Booking System</h4>
+                            <p class="small text-light-50">A web application for booking bus tickets online.</p>
+                            <a href="#" class="btn btn-sm btn-neon mt-2">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="glass-card project-card neo-brutal">
+                        <img src="https://images.stockcake.com/public/7/c/0/7c0bd3ad-68fe-4b5a-bbf3-97774b7c568e_large/stock-market-graph-stockcake.jpg" alt="Project 2" class="project-img">
+                        <div class="project-overlay">
+                            <span class="badge bg-purple mb-2">STOCK EXCHANGE USING JAVA</span>
+                            <h4>AUTONOMUS TRADING ENGINE</h4>
+                            <p class="small text-light-50">Simulate a stock exchange backend.</p>
+                            <a href="#" class="btn btn-sm btn-neon mt-2">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 reveal">
+                    <div class="glass-card project-card neo-brutal">
+                        <img src="https://images.stockcake.com/public/5/8/c/58c9f67e-49e1-4919-b11b-bb97475733e3_large/futuristic-user-profile-stockcake.jpg" alt="Project 3" class="project-img">
+                        <div class="project-overlay">
+                            <span class="badge bg-warning mb-2 text-dark">WEBSITE USING HTML+CSS+BOOTSTRAP</span>
+                            <h4>PROFILE</h4>
+                            <p class="small text-light-50">A personal portfolio website showcasing my work and skills.</p>
+                            <a href="#" class="btn btn-sm btn-neon mt-2">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <li class="nav-item">
-    <a class="nav-link" href="certifications.html">Certificates</a>
-  </li>
+    <section id="experience" class="py-5 bg-black">
+        <div class="container py-5">
+            <div class="row g-5">
+                
+                <div class="col-lg-6">
+                    <h2 class="mb-5 fw-bold">Education</h2>
+                    <div class="timeline">
+                        <div class="timeline-item reveal">
+                            <h5 class="fw-bold">B.Tech in Informatiion Technology</h5>
+                            <p class="neon-text small">Vaasavi College Of Engineering | 2024 - 2028</p>
+                            <p class="text-secondary">Focused on Artificial Intelligence and Full Stack Development.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h5 class="fw-bold">Intermediate</h5>
+                            <p class="neon-text small">Sri Chaitanya | 2022 - 2024</p>
+                            <p class="text-secondary">Completed</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h5 class="fw-bold">Schooling</h5>
+                            <p class="neon-text small">Dr.K.K.R Gowtham International School | 2022</p>
+                            <p class="text-secondary">Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <li class="nav-item">
-    <a class="nav-link" href="contact.html">Contact</a>
-  </li>
-</ul>
-</ul>
-</div>
-</div>
-</nav>
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="glass-card p-5 reveal neo-brutal">
+                <div class="row g-5">
+                    <div class="col-lg-5">
+                        <h2 class="display-5 fw-bold mb-4">Start a <br><span class="neon-text">Project</span></h2>
+                        <p class="text-secondary mb-5">Have a revolutionary idea? Let's build it together.</p>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="btn-neon me-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <span>Hyderabad, Telangana</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="btn-neon me-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <span>waruntejrangu@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <form action="#">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">NAME</label>
+                                    <input type="text" class="form-control" placeholder="John Doe">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">EMAIL</label>
+                                    <input type="email" class="form-control" placeholder="john@example.com">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small text-muted">SUBJECT</label>
+                                    <input type="text" class="form-control" placeholder="Project Inquiry">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small text-muted">MESSAGE</label>
+                                    <textarea class="form-control" rows="5" placeholder="Tell me about your vision..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-neon w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero text-center">
-<div class="container">
+    <footer class="py-5 border-top border-secondary text-center">
+        <div class="container">
+            <div class="mb-4">
+                <a href="#" class="text-white mx-3 fs-4"><i class="bi bi-github"></i></a>
+                <a href="#" class="text-white mx-3 fs-4"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="text-white mx-3 fs-4"><i class="bi bi-twitter-x"></i></a>
+            </div>
+            <p class="text-muted small mb-0">&copy; 2026 DEV.PRO - Handcrafted with Passion and Code.</p>
+        </div>
+    </footer>
 
-<img src="https://via.placeholder.com/140" class="profile-img shadow mb-3">
+    <button onclick="topFunction()" id="backToTop" class="btn btn-neon position-fixed bottom-0 end-0 m-4 shadow" style="display:none; z-index: 100;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
 
-<h1 class="fw-bold">Hi, I'm Warun Tej Rangu</h1>
-<p class="text-muted">Frontend Developer | UI Designer</p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<a href="contact.html" class="btn btn-primary me-2">
-  <i class="bi bi-person-lines-fill"></i> Contact Me
-</a>
+    <script>
+        // Scroll Progress Indicator
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollIndicator").style.width = scrolled + "%";
+            
+            // Back to top visibility
+            if (winScroll > 500) {
+                document.getElementById("backToTop").style.display = "block";
+            } else {
+                document.getElementById("backToTop").style.display = "none";
+            }
 
-<button class="btn btn-outline-dark btn-custom">
-<i class="bi bi-download"></i> Download Resume
-</button>
+            // Reveal animations
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
 
-</div>
-</section>
+        function topFunction() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
 
-<!-- FEATURES -->
-<section class="container mt-5">
-<h3 class="text-center mb-4">What I Do</h3>
+        // Simple Typewriter Effect
+        const text = ["BUILDING SKILLS FOR THE FUTURE"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
 
-<div class="row">
+        (function type() {
+            if (count === text.length) {
+                count = 0;
+            }
+            currentText = text[count];
+            letter = currentText.slice(0, ++index);
 
-<div class="col-md-4">
-<div class="card shadow text-center p-3">
-<i class="bi bi-code-slash fs-1 text-primary"></i>
-<h5 class="mt-3">Web Development</h5>
-<p>Build responsive websites using Bootstrap.</p>
-</div>
-</div>
+            document.getElementById("typewriter").textContent = letter;
+            if (letter.length === currentText.length) {
+                setTimeout(() => {
+                    count++;
+                    index = 0;
+                    setTimeout(type, 500);
+                }, 2000);
+            } else {
+                setTimeout(type, 150);
+            }
+        }());
 
-<div class="col-md-4">
-<div class="card shadow text-center p-3">
-<i class="bi bi-phone fs-1 text-success"></i>
-<h5 class="mt-3">Responsive Design</h5>
-<p>Mobile-friendly layouts for all devices.</p>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card shadow text-center p-3">
-<i class="bi bi-palette fs-1 text-danger"></i>
-<h5 class="mt-3">UI Design</h5>
-<p>Clean and modern user interfaces.</p>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- STATS -->
-<section class="container mt-5 text-center">
-<div class="row">
-
-<div class="col-md-4">
-<h2 class="text-primary">5+</h2>
-<p>Projects</p>
-</div>
-
-<div class="col-md-4">
-<h2 class="text-success">2+</h2>
-<p>Technologies</p>
-</div>
-
-<div class="col-md-4">
-<h2 class="text-danger">100%</h2>
-<p>Dedication</p>
-</div>
-
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-dark text-white text-center p-3 mt-5">
-© 2026 Warun Tej Rangu | Portfolio
-</footer>
-
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+        // Initialize Reveals on load
+        window.onload = () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('active');
+            });
+        };
+    </script>
 </body>
 </html>
